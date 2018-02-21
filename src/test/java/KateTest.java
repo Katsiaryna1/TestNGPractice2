@@ -41,7 +41,7 @@ public class KateTest {
         driver.findElement(By.xpath("//input[@id='inboxfield']")).sendKeys("dsds12");
         Thread.sleep(3000);
         driver.findElement(By.xpath("//button[@class='btn btn-dark']")).click();
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         driver.findElement(By.xpath("//div[@class='all_message-min_text all_message-min_text-3']")).click();;
         Thread.sleep(5000);
         int size = driver.findElements(By.name("msg_body")).size();

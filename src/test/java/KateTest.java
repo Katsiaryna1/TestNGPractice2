@@ -47,14 +47,34 @@ public class KateTest {
         int size = driver.findElements(By.name("msg_body")).size();
         System.out.println(size);
 
+
         driver.switchTo().frame(1);
         driver.findElement(By.partialLinkText("http://fits.qauber.com/#/page/change-password")).click();
         Thread.sleep(3000);
         //driver.switchTo().window(tabs.get(0));
-        System.out.println(tabs.size());
+        System.out.println("after opening fits"  + tabs.size());
+
+        System.out.println(driver.switchTo().window(tabs.get(0)).getTitle());
         driver.switchTo().window(tabs.get(0)).close();
+
+        System.out.println(driver.switchTo().window(tabs.get(1)).getTitle());
         driver.switchTo().window(tabs.get(1)).close();
+        tabs.clear();
+        System.out.println("after closing fits "  + tabs.size());
+
+        tabs.addAll(driver.getWindowHandles());
+        System.out.println("after new  fetch "  + tabs.size());
+        driver.switchTo().window(tabs.get(0));
+        Thread.sleep(4000);
+        String str =driver.getWindowHandle();
+
+        System.out.println(str);
+        driver.findElement(By.xpath("//input[@id='id-password']")).sendKeys("121212");
+        driver.findElement(By.xpath("//input[@name='password_confirm']")).sendKeys("121212");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
     }
+
+
     @AfterTest
     public void tearDown() throws InterruptedException {
         System.out.println("After all tests script");
